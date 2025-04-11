@@ -1,0 +1,50 @@
+<!-- templates/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ username }}</h2>
+<p><a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Logout</a></p>
+
+<h4>Select Your Preferences (0 to 5)</h4>
+<form method="POST" action="{{ url_for('recommend') }}" class="w-50" id="preferencesForm">
+    {% for cat in ['beauty', 'fitness', 'food', 'tech', 'lifestyle'] %}
+    <div class="mb-3">
+        <label>{{ cat.capitalize() }}</label>
+        <input type="number" name="{{ cat }}" min="0" max="5" class="form-control" required>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Get Recommendations</button>
+</form>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Recommendations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Your preferences have been submitted successfully!</p>
+                <p>Check your recommendations based on your preferences.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        // OPTIONAL: Only show modal and allow redirect
+        document.getElementById('preferencesForm').addEventListener('submit', function() {
+            // Modal can still be triggered, but no preventDefault
+            $('#successModal').modal('show');
+        });
+    
+</script>
+{% endblock %}
+
+       

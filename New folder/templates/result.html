@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+<h2>Your Personalized Subscription Box</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for item in recommendations %}
+  <div class="col">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.product_name }}</h5>
+        <p class="card-text">Category: {{ item.category | capitalize }}</p>
+        <a href="{{ item.link }}" class="btn btn-primary" target="_blank">View Product</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-4">Back to Dashboard</a>
+{% endblock %}
+

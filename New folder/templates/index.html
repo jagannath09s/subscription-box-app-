@@ -1,0 +1,55 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to right, #4a90e2, #50e3c2);
+        color: #fff;
+        transition: background 0.5s ease;
+    }
+
+    h2 {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .btn {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+</style>
+
+<h2 class="text-center">Welcome to Personalized Subscription Box</h2>
+<p class="text-center">
+    <a href="{{ url_for('signup') }}" class="btn btn-primary m-2">Sign Up</a>
+    <a href="{{ url_for('login') }}" class="btn btn-secondary m-2">Login</a>
+</p>
+{% endblock %}
+
